@@ -1,0 +1,18 @@
+@font-face {
+  font-family: 'onpu';
+  src: url('../fonts/hymnus.ttf') format('truetype');
+}
+
+.card {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translateX(-50%) translateY(-50%);
+	border-width: 2px;
+}
+
+.card-title {
+	font-family: 'onpu';
+	font-size: 4rem;
+	letter-spacing: 1px;
+}
