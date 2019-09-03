@@ -1,0 +1,24 @@
+#board, #board div {
+    position: relative;
+    border: 1px solid red;
+}
+#board::after, #board div::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border: none;
+    border-left: 1px dashed blue;
+    border-top: 1px dashed blue;
+    border-top-left-radius: 100%;
+}
+#board div {
+    right: -100%;
+    transform: rotate(90deg);
+}
+#next {
+    position: absolute;
+    z-index: 1000;
+}
