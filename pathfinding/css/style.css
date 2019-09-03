@@ -1,0 +1,26 @@
+figure {
+    width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.ground {
+    fill: #bfb9a2;
+}
+.forest {
+    fill: #358d42;
+}
+.river {
+    fill: #00addb;
+}
+.mountain {
+    fill: #604e00;
+}
+.border {
+    fill: #004cff;
+}
+.from {
+    fill: red;
+}
+.to {
+    fill: #21ff00;
+}

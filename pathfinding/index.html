@@ -1,0 +1,72 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="css/style.css">
+  <title>Pathfinding</title>
+</head>
+<body>
+  <figure id="grid" style></figure>
+  <div>
+    <button id="next">Next</button>
+    <button id="start">Start</button>
+  </div>
+  <div>
+    <button id="random">Random</button>
+    <button id="export">Export array</button>
+    <button id="import">Import from textarea</button>
+  </div>
+  <textarea id="io-area"></textarea>
+  <script src="js/Shapes.js"></script>
+  <script src="js/Tiles.js"></script>
+  <script src="js/Grid.js"></script>
+  <script src="js/Pathfinder.js"></script>
+  <script>
+    const initUI = (grid) => {
+      let pathfinder, generator
+      const makePathfinder = (grid) => {
+        pathfinder = new Pathfinder(grid).draw()
+        generator = pathfinder.run()
+      }
+
+      makePathfinder(grid)
+
+      document.getElementById('random').onclick = () => {
+        grid.setMap([]).draw()
+        pathfinder = makePathfinder(grid)
+      }
+
+      const textarea = document.getElementById('io-area')
+      document.getElementById('export').onclick = () => {
+        textarea.value = JSON.stringify(grid.toArray())
+      }
+
+      document.getElementById('import').onclick = () => {
+        grid.setMap(JSON.parse(textarea.value)).draw()
+      }
+
+      document.getElementById('next').onclick = (e) => {
+        const next = generator.next()
+        if (next.done) {
+          e.target.onclick = () => console.log('done')
+        }
+      }
+
+      document.getElementById('start').onclick = () => {
+        // const clear = () => !generator.next().done || clearInterval(interval)
+        // const interval = setInterval(() => clear())
+        while(!generator.next().done) {}
+      }
+    }
+
+    const init = () => {
+      const grid = new Grid(document.getElementById('grid'), 600, 300, 25)
+        .setTileTypes([['ground', 90], ['forest', 20], ['mountain', 5], ['river', 5]])
+        .draw()
+      initUI(grid)
+    }
+    window.onload = init()
+  </script>
+</body>
+</html>
